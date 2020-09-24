@@ -7,6 +7,8 @@ libraryDependencies ++= Seq(
   "com.helger" % "ph-schematron" % "5.6.1"
 )
 
+lazy val ref="git://github.com/jw3/incubator-daffodil.git#validator_spi/impl"
 dependsOn(
-  ProjectRef(uri(s"git://github.com/jw3/incubator-daffodil.git#validator_spi/impl"), "daffodil-lib"),
+  ProjectRef(uri(ref), "daffodil-lib"),
+  ProjectRef(uri(ref), "daffodil-cli").%(conf = "compile->test")
 )
