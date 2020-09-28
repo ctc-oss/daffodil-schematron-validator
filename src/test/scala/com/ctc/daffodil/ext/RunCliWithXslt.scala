@@ -1,8 +1,8 @@
 package com.ctc.daffodil.ext
 
-import org.apache.daffodil.{CLIConf, Main}
+import org.apache.daffodil.Main
 
-object RunCliWithSchVal extends App {
+object RunCliWithXslt extends App {
   val cliArgs = Array(
     "parse",
     "--schema",
