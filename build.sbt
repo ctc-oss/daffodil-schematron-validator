@@ -1,6 +1,8 @@
+enablePlugins(GitVersioning)
+
 organization := "com.ctc"
 name := "daffodil-schematron-validator"
-version := "0.1"
+git.useGitDescribe := true
 scalaVersion := "2.12.11"
 
 libraryDependencies ++= Seq(
