@@ -3,6 +3,9 @@ example daffodil validator plugin
 
 Provides Schematron validation with [ph-schematron](https://github.com/phax/ph-schematron)
 
+### jar
+
+`sbt assembly` to generate jar with pruned set of dependencies
 
 ### dev
 missing some generated sources when using the project refs from the daffodil repo, just copy those over for now
