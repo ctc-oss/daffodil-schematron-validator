@@ -9,14 +9,11 @@ import org.apache.daffodil.api.{Validator, ValidatorFactory, ValidatorInitializa
 class SchematronValidatorFactory extends ValidatorFactory {
   def name(): String = "schematron"
 
-  def make(config: Option[Config]): Validator = {
-    val sch = config match {
-      case Some(cfg) if cfg.hasPath(name()) =>
-        Paths.get(cfg.getString(name()))
-      case _ =>
-        throw ValidatorInitializationException("invalid configuration")
-    }
+  def make(config: Config): Validator = {
+    if(!config.hasPath(name()))
+      throw ValidatorInitializationException("invalid configuration")
 
+    val sch = Paths.get(config.getString(name()))
     if (!Files.exists(sch))
       throw ValidatorInitializationException(s"schematron does not exist at $sch")
 

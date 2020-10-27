@@ -4,13 +4,12 @@ import java.io.InputStream
 
 import com.helger.schematron.svrl.jaxb.{FailedAssert, SchematronOutputType}
 import com.helger.schematron.xslt.SchematronResourceXSLT
-import org.apache.daffodil.api.{ValidationError, ValidationResult, Validator}
+import org.apache.daffodil.api.{ValidationFailure, ValidationResult, Validator}
 
 import scala.collection.JavaConverters._
 
-case class SchematronValidationError(f: FailedAssert) extends ValidationError {
-  def message: String = f.getText.toString
-  def toThrowable: Throwable = new Exception(f.getText.toString)
+case class SchematronValidationError(f: FailedAssert) extends ValidationFailure {
+  def getMessage: String = f.getText.toString
 }
 
 class SchematronValidator(sch: SchematronResourceXSLT) extends Validator {
