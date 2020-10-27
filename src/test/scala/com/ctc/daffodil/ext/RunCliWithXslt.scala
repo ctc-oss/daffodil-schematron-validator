@@ -8,7 +8,7 @@ object RunCliWithXslt extends App {
     "--schema",
     "data/bmp.dfdl.xsd",
     "--validate",
-    "sch=data/bmp.xslt",
+    "schematron=data/bmp.xslt",
     "data/MARBLES.BMP"
   )
 

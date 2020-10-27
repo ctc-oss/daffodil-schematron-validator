@@ -12,9 +12,10 @@ import com.helger.xml.XMLHelper
 import com.helger.xml.namespace.MapBasedNamespaceContext
 import com.helger.xml.serialize.write.{XMLWriter, XMLWriterSettings}
 import javax.xml.XMLConstants
+import org.apache.daffodil.api.ValidatorInitializationException
 
 object SchUtil {
-  def sch2xslt(sch: File): Either[String, String] = {
+  def sch2xslt(sch: File): String = {
     val res = new FileSystemResource(sch.getAbsolutePath)
     val xsltProvider = SchematronResourceSCHCache.createSchematronXSLTProvider(res, new SCHTransformerCustomizer())
     val ns = new MapBasedNamespaceContext().addMapping("svrl", CSVRL.SVRL_NAMESPACE_URI)
@@ -27,8 +28,8 @@ object SchUtil {
     val os = new ByteArrayOutputStream()
     val conf = new XMLWriterSettings().setNamespaceContext(ns).setPutNamespaceContextPrefixesInRoot(true)
     XMLWriter.writeToStream(xsltProvider.getXSLTDocument, os, conf) match {
-      case ESuccess.SUCCESS => Right(os.toString)
-      case ESuccess.FAILURE => Left("Failed to convert SCH to XSLT.")
+      case ESuccess.SUCCESS => os.toString
+      case ESuccess.FAILURE => throw ValidatorInitializationException("Failed to convert SCH to XSLT.")
     }
   }
 

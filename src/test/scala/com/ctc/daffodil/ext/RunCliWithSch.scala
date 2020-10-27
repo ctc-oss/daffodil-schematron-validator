@@ -8,7 +8,7 @@ object RunCliWithSch extends App {
     "--schema",
     "data/bmp.dfdl.xsd",
     "--validate",
-    "sch=data/bmp.sch",
+    "schematron=data/bmp.sch",
     "data/MARBLES.BMP"
   )
 

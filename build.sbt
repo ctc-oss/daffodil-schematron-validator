@@ -6,7 +6,8 @@ git.useGitDescribe := true
 scalaVersion := "2.12.11"
 
 libraryDependencies ++= Seq(
-  "com.helger" % "ph-schematron" % "5.6.3"
+  "com.helger" % "ph-schematron" % "5.6.3",
+  "org.scalatest" %% "scalatest" % "3.0.5" % Test
 )
 
 lazy val ref="git://github.com/jw3/incubator-daffodil.git#validator_spi/impl"
